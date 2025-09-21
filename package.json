@@ -1,0 +1,33 @@
+{
+  "name": "telegram-perfume-shop",
+  "version": "1.0.0",
+  "description": "Online shop for perfumes integrated with Telegram bot",
+  "main": "src/app.ts",
+  "scripts": {
+    "start": "ts-node src/app.ts",
+    "build": "tsc",
+    "test": "jest"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "node-telegram-bot-api": "^0.54.0",
+    "typescript": "^4.5.4"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.3",
+    "@types/jest": "^27.0.2",
+    "@types/node": "^16.11.7",
+    "jest": "^27.0.6",
+    "ts-jest": "^27.0.6",
+    "ts-node": "^10.4.0"
+  },
+  "keywords": [
+    "telegram",
+    "bot",
+    "perfume",
+    "shop",
+    "online"
+  ],
+  "author": "Your Name",
+  "license": "MIT"
+}

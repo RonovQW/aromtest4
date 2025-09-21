@@ -1,0 +1,1601 @@
+/* Улучшенный черно-белый стиль с мобильной адаптацией */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #000;
+    color: #fff;
+    line-height: 1.6;
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Header с мобильной адаптацией */
+.header-dark {
+    background: #000;
+    border-bottom: 2px solid #fff;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(255,255,255,0.1);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 32px;
+}
+
+.flex-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+}
+
+.logo-block {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.logo {
+    width: 45px;
+    height: 45px;
+    stroke: #fff;
+    stroke-width: 2;
+    transition: transform 0.2s ease;
+}
+
+.logo-block:hover .logo {
+    transform: scale(1.1);
+}
+
+.header-dark h1 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    margin: 0;
+    color: #fff;
+    transition: color 0.2s ease;
+}
+
+.header-dark h1:hover {
+    color: #ccc;
+}
+
+/* Гамбургер меню */
+.mobile-menu-toggle {
+    display: none;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.hamburger {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.hamburger span {
+    display: block;
+    width: 25px;
+    height: 2px;
+    background: #fff;
+    transition: all 0.3s ease;
+}
+
+.hamburger:hover span {
+    background: #ccc;
+}
+
+/* Мобильное меню */
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    z-index: 1000;
+    transition: left 0.3s ease;
+    overflow-y: auto;
+}
+
+.mobile-menu.active {
+    left: 0;
+}
+
+.mobile-menu-content {
+    padding: 20px;
+    min-height: 100vh;
+}
+
+.mobile-menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #fff;
+    margin-bottom: 30px;
+}
+
+.mobile-menu-header h2 {
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+}
+
+.mobile-menu-close {
+    background: none;
+    border: 1px solid #fff;
+    color: #fff;
+    font-size: 1.8rem;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.mobile-menu-close:hover {
+    background: #fff;
+    color: #000;
+}
+
+.mobile-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.mobile-nav a {
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.2rem;
+    padding: 15px;
+    border: 1px solid #fff;
+    text-align: center;
+    transition: all 0.2s ease;
+    letter-spacing: 1px;
+}
+
+.mobile-nav a:hover,
+.mobile-nav a.active {
+    background: #fff;
+    color: #000;
+}
+
+/* Поиск в шапке */
+.header-search {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    flex: 1;
+    max-width: 300px;
+    margin: 0 20px;
+}
+
+#header-search {
+    flex: 1;
+    padding: 8px 15px;
+    font-size: 0.9rem;
+    background: #000;
+    color: #fff;
+    border: 1px solid #fff;
+    letter-spacing: 1px;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+#header-search:focus {
+    border-color: #fff;
+    box-shadow: 0 0 10px rgba(255,255,255,0.3);
+}
+
+#header-search::placeholder {
+    color: #666;
+}
+
+#search-button {
+    background: #000;
+    border: 1px solid #fff;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#search-button:hover {
+    background: #fff;
+}
+
+#search-button:hover svg {
+    stroke: #000;
+}
+
+#search-button svg {
+    stroke: #fff;
+    transition: stroke 0.2s ease;
+}
+
+/* Основная навигация */
+nav.main-nav {
+    display: flex;
+    gap: 32px;
+}
+
+nav.main-nav a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    padding: 8px 16px;
+    border-radius: 0;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+nav.main-nav a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.3s ease;
+}
+
+nav.main-nav a:hover::before {
+    left: 100%;
+}
+
+nav.main-nav a.active,
+nav.main-nav a:hover {
+    background: #fff;
+    color: #000;
+}
+
+/* Счетчик корзины */
+/* Полностью заменить счетчик корзины */
+nav.main-nav a[data-section="cart"] {
+    position: relative;
+    overflow: visible; /* Важно! */
+}
+
+nav.main-nav a[data-section="cart"]::after {
+    content: attr(data-count);
+    position: absolute;
+    top: -12px;
+    right: -12px;
+    background: #fff;
+    color: #000;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    font-size: 0.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    transition: transform 0.2s ease;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    z-index: 10;
+    border: 2px solid #000; /* Граница для лучшей видимости */
+}
+
+nav.main-nav a[data-section="cart"]:hover::after {
+    transform: scale(1.1);
+}
+
+/* Для мобильного меню */
+.mobile-nav a[data-section="cart"] {
+    position: relative;
+    overflow: visible; /* Важно! */
+}
+
+.mobile-nav a[data-section="cart"]::after {
+    content: attr(data-count);
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: #fff;
+    color: #000;
+    border-radius: 50%;
+    width: 22px;
+    height: 22px;
+    font-size: 0.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    z-index: 10;
+    border: 2px solid #000;
+}
+
+/* Скрыть счетчик если 0 или нет атрибута */
+nav.main-nav a[data-section="cart"]::after,
+.mobile-nav a[data-section="cart"]::after {
+    display: none;
+}
+
+nav.main-nav a[data-section="cart"][data-count]:not([data-count="0"])::after,
+.mobile-nav a[data-section="cart"][data-count]:not([data-count="0"])::after {
+    display: flex;
+}
+
+/* Main content */
+main {
+    max-width: 1200px;
+    margin: 40px auto 0 auto;
+    padding: 0 32px;
+}
+
+h2 {
+    font-size: 2.5rem;
+    color: #fff;
+    margin-bottom: 30px;
+    text-align: center;
+    font-weight: 800;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: #fff;
+}
+
+/* Каталог духов */
+.perfume-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2.5rem;
+    margin-top: 2rem;
+    padding: 20px 0;
+}
+
+.perfume-card {
+    background: #000;
+    border: 2px solid #fff;
+    padding: 0;
+    width: 100%;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: #fff;
+    position: relative;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 8px rgba(255,255,255,0.1);
+    touch-action: manipulation;
+}
+
+.perfume-card:hover {
+    background: #fff;
+    color: #000;
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(255,255,255,0.2);
+}
+
+.card-img {
+    width: 100%;
+    height: 280px;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-bottom: 1px solid #fff;
+}
+
+.card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(100%) brightness(0.8);
+    transition: all 0.2s ease;
+    display: block;
+}
+
+.perfume-card:hover .card-img img {
+    filter: grayscale(0%) brightness(1);
+}
+
+.card-content {
+    padding: 25px 20px 20px 20px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.perfume-card h3 {
+    margin-bottom: 12px;
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #fff;
+    transition: color 0.2s ease;
+}
+
+.perfume-card:hover h3 {
+    color: #000;
+}
+
+.brand {
+    color: #fff;
+    font-weight: 600;
+    margin-bottom: 8px;
+    font-size: 1.05rem;
+    transition: color 0.2s ease;
+}
+
+.perfume-card:hover .brand {
+    color: #000;
+}
+
+.notes {
+    color: #ccc;
+    font-size: 0.95rem;
+    margin-bottom: 12px;
+    font-style: italic;
+    transition: color 0.2s ease;
+}
+
+.perfume-card:hover .notes {
+    color: #666;
+}
+
+.desc {
+    color: #999;
+    font-size: 0.95rem;
+    margin-bottom: 15px;
+    transition: color 0.2s ease;
+}
+
+.perfume-card:hover .desc {
+    color: #333;
+}
+
+.card-bottom {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    margin-top: auto;
+}
+
+.price {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #fff;
+    transition: color 0.2s ease;
+}
+
+.perfume-card:hover .price {
+    color: #000;
+}
+
+.volume {
+    font-size: 1rem;
+    color: #ccc;
+    transition: color 0.2s ease;
+}
+
+.perfume-card:hover .volume {
+    color: #666;
+}
+
+.stock {
+    font-size: 0.9rem;
+    color: #999;
+    transition: color 0.2s ease;
+}
+
+.perfume-card:hover .stock {
+    color: #333;
+}
+
+/* Кнопки */
+.details-btn {
+    background: #000;
+    color: #fff;
+    border: 1px solid #fff;
+    border-radius: 0;
+    padding: 10px 20px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-left: auto;
+    letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
+    touch-action: manipulation;
+}
+
+.details-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.3s ease;
+}
+
+.details-btn:hover::before {
+    left: 100%;
+}
+
+.perfume-card:hover .details-btn {
+    background: #000;
+    color: #fff;
+}
+
+.details-btn:hover {
+    background: #fff;
+    color: #000;
+}
+
+.details-btn:disabled {
+    background: #333;
+    color: #666;
+    cursor: not-allowed;
+    border: 1px solid #666;
+}
+
+.buy-btn {
+    background: #000;
+    color: #fff;
+    border: 1px solid #fff;
+    padding: 8px 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    letter-spacing: 1px;
+    margin-left: 10px;
+    position: relative;
+    overflow: hidden;
+    touch-action: manipulation;
+}
+
+.buy-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.3s ease;
+}
+
+.buy-btn:hover::before {
+    left: 100%;
+}
+
+.buy-btn:hover {
+    background: #fff;
+    color: #000;
+}
+
+.out-of-stock .buy-btn {
+    background: #333;
+    color: #666;
+    cursor: not-allowed;
+}
+
+.out-of-stock .buy-btn:hover {
+    background: #333;
+    color: #666;
+}
+
+.out-of-stock {
+    opacity: 0.7;
+    background: #000;
+    border: 1px dashed #666;
+}
+
+.out-of-stock:hover {
+    background: #000;
+    color: #fff;
+    transform: none;
+    box-shadow: none;
+}
+
+.out-of-stock .card-img img {
+    filter: grayscale(100%) brightness(0.3);
+}
+
+/* Модальное окно */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    left: 0; 
+    top: 0;
+    width: 100%; 
+    height: 100%;
+    background: rgba(0,0,0,0.95);
+}
+
+.modal-content {
+    background: #000;
+    border: 2px solid #fff;
+    margin: 7% auto;
+    padding: 2.5rem 2rem 2rem 2rem;
+    width: 370px;
+    position: relative;
+    color: #fff;
+    box-shadow: 0 0 30px rgba(255,255,255,0.1);
+}
+
+.close {
+    position: absolute;
+    right: 18px;
+    top: 12px;
+    font-size: 28px;
+    color: #fff;
+    cursor: pointer;
+    font-weight: 300;
+    transition: color 0.2s ease;
+    touch-action: manipulation;
+}
+
+.close:hover {
+    color: #666;
+}
+
+#modal-title {
+    font-size: 1.5rem;
+    color: #fff;
+    margin-bottom: 15px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+#modal-brand {
+    color: #fff;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+#modal-notes {
+    color: #ccc;
+    font-size: 0.95rem;
+    margin-bottom: 15px;
+    font-style: italic;
+}
+
+#modal-description {
+    margin-bottom: 20px;
+    color: #999;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+#modal-price, #modal-stock {
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+    color: #fff;
+    font-weight: 600;
+}
+
+/* Footer */
+.footer-dark {
+    background: #000;
+    color: #fff;
+    text-align: center;
+    padding: 28px 0 18px 0;
+    margin-top: 48px;
+    font-size: 1rem;
+    letter-spacing: 2px;
+    border-top: 2px solid #fff;
+}
+
+/* Корзина */
+#cart {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.cart-items {
+    margin-bottom: 30px;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border: 1px solid #fff;
+    margin-bottom: 15px;
+    background: #000;
+    transition: box-shadow 0.2s ease;
+}
+
+.cart-item:hover {
+    box-shadow: 0 0 15px rgba(255,255,255,0.1);
+}
+
+.cart-item-info h4 {
+    margin: 0 0 5px 0;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+}
+
+.cart-item-info p {
+    margin: 0;
+    color: #999;
+    font-size: 0.9rem;
+}
+
+.cart-item-controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.cart-item-controls button {
+    background: #000;
+    color: #fff;
+    border: 1px solid #fff;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    transition: all 0.2s ease;
+    touch-action: manipulation;
+}
+
+.cart-item-controls button:hover {
+    background: #fff;
+    color: #000;
+}
+
+.cart-item-price {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.cart-item-price span {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.remove-btn {
+    background: #000 !important;
+    color: #fff !important;
+    border: 1px solid #fff !important;
+    width: 30px !important;
+    height: 30px !important;
+    font-size: 1.2rem !important;
+    cursor: pointer;
+    transition: all 0.2s ease !important;
+    touch-action: manipulation;
+}
+
+.remove-btn:hover {
+    background: #fff !important;
+    color: #000 !important;
+}
+
+.cart-total {
+    text-align: right;
+    padding: 20px;
+    border: 1px solid #fff;
+    background: #000;
+}
+
+.cart-total h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+}
+
+.empty-cart {
+    text-align: center;
+    padding: 40px;
+    color: #666;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+}
+
+/* Уведомления */
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #000;
+    color: #fff;
+    border: 1px solid #fff;
+    padding: 15px 20px;
+    z-index: 1000;
+    border-radius: 0;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    box-shadow: 0 0 20px rgba(255,255,255,0.2);
+}
+
+/* Адаптивность */
+@media (max-width: 900px) {
+    .container {
+        padding: 0 16px;
+    }
+    
+    .perfume-list {
+        gap: 1.5rem;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+    
+    .card-img {
+        height: 240px;
+    }
+}
+
+@media (max-width: 768px) {
+    .flex-row {
+        flex-direction: row;
+        gap: 10px;
+        padding: 15px 0;
+    }
+    
+    .logo-block h1 {
+        font-size: 1.4rem;
+    }
+    
+    .logo {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .header-search {
+        max-width: 150px;
+        margin: 0 10px;
+    }
+    
+    #header-search {
+        padding: 6px 10px;
+        font-size: 0.8rem;
+    }
+    
+    #search-button {
+        padding: 6px 10px;
+    }
+    
+    nav.main-nav {
+        gap: 15px;
+    }
+    
+    nav.main-nav a {
+        font-size: 0.9rem;
+        padding: 6px 12px;
+    }
+    
+    main {
+        padding: 0 16px;
+        margin: 20px auto 0 auto;
+    }
+    
+    h2 {
+        font-size: 2rem;
+        letter-spacing: 2px;
+        margin-bottom: 20px;
+    }
+    
+    .perfume-list {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 1.2rem;
+    }
+    
+    .card-img {
+        height: 200px;
+    }
+    
+    .card-content {
+        padding: 20px 15px 15px 15px;
+    }
+    
+    .card-bottom {
+        gap: 8px;
+    }
+    
+    .modal-content {
+        width: 90%;
+        margin: 20% auto;
+        padding: 2rem 1.5rem 1.5rem 1.5rem;
+    }
+    
+    .cart-item {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+        padding: 15px;
+    }
+    
+    .cart-item-controls {
+        justify-content: center;
+    }
+    
+    .cart-item-price {
+        justify-content: center;
+    }
+    
+    .cart-total {
+        text-align: center;
+        padding: 15px;
+    }
+    
+    .cart-total h3 {
+        font-size: 1.3rem;
+    }
+}
+
+/* Мобильная версия */
+@media (max-width: 600px) {
+    .mobile-menu-toggle {
+        display: block;
+    }
+    
+    nav.main-nav {
+        display: none;
+    }
+    
+    .header-search {
+        max-width: 120px;
+        margin: 0 5px;
+    }
+    
+    .flex-row {
+        padding: 12px 0;
+    }
+    
+    .logo-block h1 {
+        font-size: 1.2rem;
+    }
+    
+    main {
+        margin: 15px auto 0 auto;
+        padding: 0 12px;
+    }
+    
+    h2 {
+        font-size: 1.6rem;
+        letter-spacing: 1px;
+        margin-bottom: 15px;
+    }
+    
+    h2::after {
+        width: 60px;
+        height: 2px;
+    }
+    
+    .perfume-list {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .card-img {
+        height: 250px;
+    }
+    
+    .card-content {
+        padding: 20px;
+    }
+    
+    .card-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .details-btn, .buy-btn {
+        margin-left: 0;
+        width: 100%;
+        text-align: center;
+        padding: 12px;
+    }
+    
+    .modal-content {
+        padding: 1.5rem 1rem 1rem 1rem;
+        margin: 15% auto;
+    }
+    
+    #modal-title {
+        font-size: 1.3rem;
+    }
+    
+    .footer-dark {
+        padding: 20px 0 15px 0;
+        font-size: 0.9rem;
+        letter-spacing: 1px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 10px;
+    }
+    
+    .flex-row {
+        padding: 10px 0;
+    }
+    
+    .logo-block h1 {
+        font-size: 1.1rem;
+    }
+    
+    .logo {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .header-search {
+        max-width: 100px;
+    }
+    
+    #header-search {
+        padding: 5px 8px;
+        font-size: 0.75rem;
+    }
+    
+    h2 {
+        font-size: 1.4rem;
+    }
+    
+    .card-img {
+        height: 220px;
+    }
+    
+    .card-content {
+        padding: 15px;
+    }
+    
+    .perfume-card h3 {
+        font-size: 1.1rem;
+        margin-bottom: 8px;
+    }
+    
+    .brand {
+        font-size: 0.95rem;
+        margin-bottom: 6px;
+    }
+    
+    .notes {
+        font-size: 0.9rem;
+        margin-bottom: 8px;
+    }
+    
+    .desc {
+        font-size: 0.9rem;
+        margin-bottom: 12px;
+    }
+    
+    .price {
+        font-size: 1.1rem;
+    }
+    
+    .stock {
+        font-size: 0.85rem;
+    }
+    
+    .empty-cart {
+        padding: 30px;
+        font-size: 1rem;
+    }
+}
+
+/* Очень маленькие экраны */
+@media (max-width: 360px) {
+    .header-search {
+        display: none;
+    }
+    
+    .card-img {
+        height: 200px;
+    }
+    
+    .modal-content {
+        padding: 1rem 0.8rem 0.8rem 0.8rem;
+        margin: 10% auto;
+    }
+    
+    #modal-title {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+    }
+    
+    #modal-description {
+        font-size: 0.9rem;
+        margin-bottom: 15px;
+    }
+}
+
+/* Добавить в CSS файл */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #fff;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    background: #000;
+    border: 1px solid #fff;
+    color: #fff;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #fff;
+    box-shadow: 0 0 10px rgba(255,255,255,0.3);
+}
+
+.form-group textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+.radio-group {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.radio-group label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: normal;
+    cursor: pointer;
+}
+
+.checkout-btn {
+    background: #fff;
+    color: #000;
+    border: 2px solid #fff;
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: 100%;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.checkout-btn:hover {
+    background: #000;
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+.back-to-cart-btn {
+    background: #000;
+    color: #fff;
+    border: 1px solid #fff;
+    padding: 12px 20px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: 100%;
+}
+
+.back-to-cart-btn:hover {
+    background: #fff;
+    color: #000;
+}
+
+/* Адаптивность */
+@media (max-width: 600px) {
+    .radio-group {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .checkout-btn {
+        padding: 12px 20px;
+        font-size: 1rem;
+    }
+}
+
+/* Добавить в CSS файл */
+.form-group.error input,
+.form-group.error textarea {
+    border-color: #ff4444;
+    box-shadow: 0 0 10px rgba(255, 68, 68, 0.3);
+}
+
+.form-error {
+    color: #ff4444;
+    font-size: 0.9rem;
+    margin-top: 5px;
+    display: none;
+}
+
+.form-group.error .form-error {
+    display: block;
+}
+
+/* Индикатор загрузки */
+.loading-spinner {
+    display: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #fff;
+    border-top: 2px solid #000;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Добавить в CSS файл */
+
+/* Светлая тема */
+body.light {
+    background: #fff;
+    color: #000;
+}
+
+body.light .header-dark {
+    background: #fff;
+    border-bottom: 2px solid #000;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+body.light .header-dark h1 {
+    color: #000;
+}
+
+body.light .header-dark h1:hover {
+    color: #333;
+}
+
+body.light .logo {
+    stroke: #000;
+}
+
+body.light .hamburger span {
+    background: #000;
+}
+
+body.light .hamburger:hover span {
+    background: #333;
+}
+
+body.light #header-search {
+    background: #fff;
+    color: #000;
+    border: 1px solid #000;
+}
+
+body.light #header-search::placeholder {
+    color: #666;
+}
+
+body.light #search-button {
+    background: #fff;
+    border: 1px solid #000;
+}
+
+body.light #search-button:hover {
+    background: #000;
+}
+
+body.light #search-button:hover svg {
+    stroke: #fff;
+}
+
+body.light #search-button svg {
+    stroke: #000;
+}
+
+body.light nav.main-nav a {
+    color: #000;
+    border: 1px solid #000;
+}
+
+body.light nav.main-nav a.active,
+body.light nav.main-nav a:hover {
+    background: #000;
+    color: #fff;
+}
+
+body.light h2 {
+    color: #000;
+}
+
+body.light h2::after {
+    background: #000;
+}
+
+body.light .perfume-card {
+    background: #fff;
+    border: 2px solid #000;
+    color: #000;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+body.light .perfume-card:hover {
+    background: #000;
+    color: #fff;
+}
+
+body.light .perfume-card h3 {
+    color: #000;
+}
+
+body.light .perfume-card:hover h3 {
+    color: #fff;
+}
+
+body.light .brand {
+    color: #000;
+}
+
+body.light .perfume-card:hover .brand {
+    color: #fff;
+}
+
+body.light .notes {
+    color: #666;
+}
+
+body.light .perfume-card:hover .notes {
+    color: #ccc;
+}
+
+body.light .desc {
+    color: #333;
+}
+
+body.light .perfume-card:hover .desc {
+    color: #999;
+}
+
+body.light .price {
+    color: #000;
+}
+
+body.light .perfume-card:hover .price {
+    color: #fff;
+}
+
+body.light .volume {
+    color: #666;
+}
+
+body.light .perfume-card:hover .volume {
+    color: #ccc;
+}
+
+body.light .stock {
+    color: #333;
+}
+
+body.light .perfume-card:hover .stock {
+    color: #999;
+}
+
+body.light .details-btn {
+    background: #fff;
+    color: #000;
+    border: 1px solid #000;
+}
+
+body.light .perfume-card:hover .details-btn {
+    background: #000;
+    color: #fff;
+}
+
+body.light .details-btn:hover {
+    background: #000;
+    color: #fff;
+}
+
+body.light .buy-btn {
+    background: #fff;
+    color: #000;
+    border: 1px solid #000;
+}
+
+body.light .buy-btn:hover {
+    background: #000;
+    color: #fff;
+}
+
+body.light .modal-content {
+    background: #fff;
+    border: 2px solid #000;
+    color: #000;
+}
+
+body.light .close {
+    color: #000;
+}
+
+body.light .close:hover {
+    color: #666;
+}
+
+body.light #modal-title,
+body.light #modal-brand,
+body.light #modal-price,
+body.light #modal-stock {
+    color: #000;
+}
+
+body.light #modal-notes {
+    color: #666;
+}
+
+body.light #modal-description {
+    color: #333;
+}
+
+body.light .footer-dark {
+    background: #fff;
+    color: #000;
+    border-top: 2px solid #000;
+}
+
+body.light .cart-item {
+    background: #fff;
+    border: 1px solid #000;
+}
+
+body.light .cart-item:hover {
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+
+body.light .cart-item-controls button {
+    background: #fff;
+    color: #000;
+    border: 1px solid #000;
+}
+
+body.light .cart-item-controls button:hover {
+    background: #000;
+    color: #fff;
+}
+
+body.light .cart-total {
+    background: #fff;
+    border: 1px solid #000;
+}
+
+body.light .empty-cart {
+    color: #666;
+}
+
+body.light .form-group input,
+body.light .form-group textarea {
+    background: #fff;
+    border: 1px solid #000;
+    color: #000;
+}
+
+body.light .form-group input:focus,
+body.light .form-group textarea:focus {
+    border-color: #000;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+body.light .checkout-btn {
+    background: #000;
+    color: #fff;
+    border: 2px solid #000;
+}
+
+body.light .checkout-btn:hover {
+    background: #fff;
+    color: #000;
+}
+
+body.light .back-to-cart-btn {
+    background: #fff;
+    color: #000;
+    border: 1px solid #000;
+}
+
+body.light .back-to-cart-btn:hover {
+    background: #000;
+    color: #fff;
+}
+
+/* Переключатель темы */
+.theme-toggle {
+    margin-left: 20px;
+}
+
+#theme-toggle {
+    background: transparent;
+    border: 1px solid #fff;
+    color: #fff;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+body.light #theme-toggle {
+    border: 1px solid #000;
+    color: #000;
+}
+
+#theme-toggle:hover {
+    background: #fff;
+    color: #000;
+    transform: rotate(30deg);
+}
+
+body.light #theme-toggle:hover {
+    background: #000;
+    color: #fff;
+}
+
+/* Адаптивность для переключателя темы */
+@media (max-width: 768px) {
+    .theme-toggle {
+        margin-left: 10px;
+    }
+    
+    #theme-toggle {
+        width: 35px;
+        height: 35px;
+    }
+}
+
+@media (max-width: 600px) {
+    .theme-toggle {
+        margin-left: 5px;
+    }
+}
